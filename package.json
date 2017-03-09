@@ -1,0 +1,37 @@
+{
+  "name": "mobile-prefixes",
+  "version": "1.0.0",
+  "description": "List of mobile phone number series by country",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Laboratory/mobile-prefixes.git"
+  },
+  "keywords": [
+    "mobile",
+    "prefixes",
+    "series",
+    "validation"
+  ],
+  "author": "Vitaly Nikitin (vit.nikitin@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Laboratory/mobile-prefixes/issues"
+  },
+  "homepage": "https://github.com/Laboratory/mobile-prefixes",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "cheerio": "^0.22.0",
+    "fs-path": "0.0.22",
+    "mocha": "^3.2.0",
+    "request": "^2.79.0",
+    "coffee-script": "^1.12.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "country-mapper": "^1.0.11"
+  }
+}
