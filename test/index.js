@@ -101,6 +101,10 @@ describe('mobile phone number series', function () {
             assert.isAbove(mobilePefixes.byMobilePrefix('911').length, 0);
             assert.equal(mobilePefixes.byMobilePrefix('911', 'Russian Federation').length, 1);
         });
+        it('743', function () {
+            assert.isAbove(mobilePefixes.byMobilePrefix('743').length, 0);
+            assert.equal(mobilePefixes.byMobilePrefix('743', 'Romania').length, 1);
+        });
     });
 });
 
