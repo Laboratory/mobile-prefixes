@@ -25,14 +25,11 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "cheerio": "^1.0.0-rc.2",
-    "coffeescript": "^2.2.4",
     "fs-path": "0.0.24",
     "mocha": "^5.0.5",
-    "request": "^2.79.0"
+    "standard": "^11.0.1"
   },
   "dependencies": {
-    "country-mapper": "^1.0.11",
-    "lodash": "^4.17.4",
-    "standard": "^11.0.1"
+    "country-mapper": "^1.0.11"
   }
 }

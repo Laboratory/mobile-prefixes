@@ -1,5 +1,4 @@
 const mobileData = require('./data/prefixes.json')
-const _ = require('lodash')
 const mapper = require('country-mapper')
 
 /**
@@ -34,7 +33,7 @@ let findByField = (search, field, isReplace, data) => {
     }
   }
 
-  return _.filter(data || mobileData, (item) => {
+  return (data || mobileData).filter(item => {
     let fieldValue = item[field].toLowerCase()
     if (/x/.test(fieldValue)) {
       let regex = new RegExp(fieldValue.replace('x', '\\d'), 'g')
@@ -52,7 +51,7 @@ module.exports = {
 
   byCountryName (countryName) {
     let name = isoCountryName(countryName)
-    return _.filter(mobileData, (item) => {
+    return mobileData.filter(item => {
       return (item.countryName.toLowerCase() === name.toLowerCase())
     })
   },
@@ -61,7 +60,7 @@ module.exports = {
     let data = mobileData
     if (countryName) {
       countryName = mapper.iso(countryName).toLowerCase()
-      data = _.filter(data, (item) => {
+      data = data.filter(item => {
         return (item.countryName.toLowerCase() === countryName)
       })
     }
