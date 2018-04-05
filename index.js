@@ -35,13 +35,22 @@ let findByField = (search, field, isReplace, data) => {
 
   return (data || mobileData).filter(item => {
     let fieldValue = item[field].toLowerCase()
-    if (/x/.test(fieldValue)) {
-      let regex = new RegExp(fieldValue.replace('x', '\\d'), 'g')
-      return regex.test(search.toLowerCase())
-    } else {
-      return fieldValue === search.toLowerCase()
-    }
+    let start = fieldValue.replace(/^\+/g, '\\+')
+    let regex = new RegExp('^' + start.replace(/x/gi, '\\d'), 'gi')
+    return regex.test(search)
   })
+}
+
+// filter mobileData by country name
+let _getDataByCountry = (countryName) => {
+  let data = mobileData
+  if (countryName) {
+    countryName = isoCountryName(countryName).toLowerCase()
+    data = data.filter(item => {
+      return (item.countryName.toLowerCase() === countryName)
+    })
+  }
+  return (data)
 }
 
 module.exports = {
@@ -50,24 +59,26 @@ module.exports = {
   },
 
   byCountryName (countryName) {
-    let name = isoCountryName(countryName)
-    return mobileData.filter(item => {
-      return (item.countryName.toLowerCase() === name.toLowerCase())
-    })
+    return _getDataByCountry(countryName)
   },
 
   byMobilePrefix (mobilePrefix, countryName) {
-    let data = mobileData
-    if (countryName) {
-      countryName = mapper.iso(countryName).toLowerCase()
-      data = data.filter(item => {
-        return (item.countryName.toLowerCase() === countryName)
-      })
-    }
+    let data = _getDataByCountry(countryName)
     return findByField(mobilePrefix, 'mobilePrefix', false, data)
   },
 
-  byCarrierName (carrierName) {
-    return findByField(carrierName, 'carrierName', false)
+  byCarrierName (carrierName, countryName) {
+    let data = _getDataByCountry(countryName)
+    return data.filter(item => {
+      return item.carrierName.indexOf(carrierName) >= 0
+    })
+  },
+
+  byPhone (phone, countryName) {
+    phone = '+' + phone.replace(/\D/g, '')
+    let data = _getDataByCountry(countryName)
+    return findByField(phone, 'fullCode', false, data)
   }
 }
+
+console.log('+40743829808‬', module.exports.byPhone('+557790000', 'Brazil'))
