@@ -80,5 +80,3 @@ module.exports = {
     return findByField(phone, 'fullCode', false, data)
   }
 }
-
-console.log('+40743829808‬', module.exports.byPhone('+557790000', 'Brazil'))
